@@ -26,8 +26,12 @@ const sess = {
 //express. use session
 app.use(session(sess));
 
+const helpers = require("./utils/helpers");
+
+const hbs = exphbs.create({ helpers });
+
 // Sets Handlebars as the default template engine
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 //other middleware
