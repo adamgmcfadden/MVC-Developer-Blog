@@ -5,6 +5,7 @@ const { Post, User, Comment } = require("../models");
 
 // get all posts for homepage
 router.get("/", (req, res) => {
+  console.log("======================");
   Post.findAll({
     attributes: ["id", "post_text", "title", "created_at"],
     include: [
@@ -79,9 +80,7 @@ router.get("/login", (req, res) => {
 
   res.render("login");
 });
-
 router.get("/signup", (req, res) => {
   res.render("signup");
 });
-
 module.exports = router;
