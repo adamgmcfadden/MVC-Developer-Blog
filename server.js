@@ -1,4 +1,4 @@
-// --------------DEPENDENCIES------------------- // IMPORT AS REQUIRED TO SIMPLIFY CODE
+// --------------DEPENDENCIES-------------------
 // npm packages
 const express = require("express");
 const session = require("express-session");
