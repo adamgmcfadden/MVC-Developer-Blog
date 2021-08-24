@@ -1,5 +1,6 @@
 // --------------DEPENDENCIES------------------- // IMPORT AS REQUIRED TO SIMPLIFY CODE
 // npm packages
+const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
