@@ -8,18 +8,26 @@
   <body>
     <div class="container">
       <header>
-        <h1>
-          Blog-This-Tech
-        </h1>
+
         <nav>
           <a href="/">Home</a>
           <a href="/dashboard">Dashboard</a>
-          <a href="/logout">Logout</a>
+          {{#if loggedIn}}
+            <button id="logout" class="btn-nav">logout</button>
+          {{else}}
+            <a href="/login">login</a>
+          {{/if}}
         </nav>
+        <h1>
+          Blog-This-Tech
+        </h1>
       </header>
       <main>
         {{{body}}}
       </main>
     </div>
+    {{#if loggedIn}}
+      <script src="/javascript/logout.js"></script>
+    {{/if}}
   </body>
 </html>
