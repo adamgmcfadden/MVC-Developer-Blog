@@ -8,13 +8,13 @@
 
 A CMS-style blog site where developers can create blog posts and comment on other developers' blogs.
 
-### Languages Used:
+#### Languages Used:
 
 ![Language](https://img.shields.io/badge/HTML-green.svg "Language Badge")
 ![Language](https://img.shields.io/badge/CSS-blue.svg "Language Badge")
-![Language](https://img.shields.io/badge/JavaScript-green.svg "Language Badge")
+![Language](https://img.shields.io/badge/JavaScript-red.svg "Language Badge")
 
-### NPM packages Used:
+#### NPM packages Used:
 
 - Express.js
   - Express-Session
