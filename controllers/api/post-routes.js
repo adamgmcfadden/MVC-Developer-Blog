@@ -5,7 +5,6 @@ const withAuth = require("../../utils/auth");
 
 // get all users
 router.get("/", (req, res) => {
-  console.log("======================");
   Post.findAll({
     attributes: ["id", "post_text", "title", "created_at"],
     include: [
@@ -77,11 +76,11 @@ router.post("/", withAuth, (req, res) => {
     });
 });
 
+// may need to rework this one
 router.put("/:id", withAuth, (req, res) => {
   Post.update(
     {
       title: req.body.title,
-      post_text: req.body.post_text,
     },
     {
       where: {
@@ -103,6 +102,7 @@ router.put("/:id", withAuth, (req, res) => {
 });
 
 router.delete("/:id", withAuth, (req, res) => {
+  console.log("id", req.params.id);
   Post.destroy({
     where: {
       id: req.params.id,

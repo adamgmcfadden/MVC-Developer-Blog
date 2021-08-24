@@ -1,9 +1,7 @@
 const router = require("express").Router();
-
 const { User, Post, Comment } = require("../../models");
-const withAuth = require("../../utils/auth");
 
-// get all users
+//get all users
 router.get("/", (req, res) => {
   User.findAll({
     attributes: { exclude: ["password"] },
@@ -24,7 +22,7 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Post,
-        attributes: ["id", "post_text", "title", "created_at"],
+        attributes: ["id", "title", "post_text", "created_at"],
       },
       {
         model: Comment,
@@ -38,7 +36,7 @@ router.get("/:id", (req, res) => {
   })
     .then((dbUserData) => {
       if (!dbUserData) {
-        res.status(404).json({ message: "No user found with this id" });
+        res.status(404).json({ message: "No user with this id" });
         return;
       }
       res.json(dbUserData);
@@ -69,18 +67,15 @@ router.post("/", (req, res) => {
       res.status(500).json(err);
     });
 });
-//
-//  logiin logout
 
 router.post("/login", (req, res) => {
-  // expects {email: 'lernantino@gmail.com', password: 'password1234'}
   User.findOne({
     where: {
-      username: req.body.username,
+      email: req.body.email,
     },
   }).then((dbUserData) => {
     if (!dbUserData) {
-      res.status(400).json({ message: "No user with that name!" });
+      res.status(400).json({ message: "No user with that email address!" });
       return;
     }
 
@@ -101,7 +96,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.post("/logout", withAuth, (req, res) => {
+router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -111,10 +106,7 @@ router.post("/logout", withAuth, (req, res) => {
   }
 });
 
-router.put("/:id", withAuth, (req, res) => {
-  // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-
-  // pass in req.body instead to only update what's passed through
+router.put("/:id", (req, res) => {
   User.update(req.body, {
     individualHooks: true,
     where: {
@@ -134,7 +126,7 @@ router.put("/:id", withAuth, (req, res) => {
     });
 });
 
-router.delete("/:id", withAuth, (req, res) => {
+router.delete("/:id", (req, res) => {
   User.destroy({
     where: {
       id: req.params.id,
