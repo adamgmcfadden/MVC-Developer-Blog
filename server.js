@@ -1,17 +1,18 @@
 // --------------DEPENDENCIES-------------------
 // npm packages
+const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
-
-// import from other files
-const sequelize = require("./config/connection");
 
 // create variable for express()
 const app = express();
 // PORT variable for listener
 const PORT = process.env.PORT || 3001;
+
+// other imports
+const sequelize = require("./config/connection");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 //config session
 const sess = {
