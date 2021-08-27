@@ -1,34 +1,34 @@
 <article>
-  <a href="/dashboard"> &larr; Back to dashboard</a>
-  <h2>
-    Edit Post
-  </h2>
   <form class="edit-post-form">
-    <div>
-      <input name="post-title" type="text" value="{{post.title}}" />
+    <div class="multi-form">
+      <div class="subtitle" id="new-post">
+        <h2>Edit Post</h2>
+      </div>
+      <div class="form-style">
+        <div>
+          <label for="post-title">Title</label>
+          <input
+            name="post-title"
+            type="text"
+            value="{{post.title}}"
+            id="post-title"
+          />
+        </div>
+        <div>
+          <label for="post-text">Content</label>
+          <textarea name="post-text">{{post.post_text}}</textarea>
+        </div>
+        <button type="submit" id="styling-edit-post-btn">Update Post</button>
+        <button
+          type="button"
+          class="delete-post-btn"
+          id="styling-edit-post-btn"
+        >Delete</button>
+        <a href="/dashboard" id="return-link"> &larr; Return to dashboard</a>
+      </div>
     </div>
-    <div>
-      <textarea name="post-text">{{post.post_text}}</textarea>
-    </div>
-        
-    {{> comments post.comments}}
-    
-    <button type="submit">Save post</button>
-    <button type="button" class="delete-post-btn">Delete post</button>
   </form>
 </article>
 
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
-
-  <div>
-    <button type="submit">add comment</button>
-  </div>
-</form>
-
-
 <script src="/javascript/edit-post.js"></script>
 <script src="/javascript/delete-post.js"></script>
-<script src="/javascript/comment.js"></script>
