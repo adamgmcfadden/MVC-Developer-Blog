@@ -1,4 +1,32 @@
-{{> post-info post}}
+<article class="post">
+  <div class="title">
+    <h2>{{post.title}}</h2>
+  </div>
+  <div class="post-text">{{post.post_text}}</div>
+  <div class="meta">
+    by
+    {{post.user.username}}
+    on
+    {{format_date post.created_at}}
+    |
+
+  </div>
+</article>
+<div class="comments">
+  {{#each post.comments}}
+    <section class="comment">
+      <div class="text">
+        {{comment_text}}
+      </div>
+      <div class="meta">
+        by
+        {{user.username}}
+        on
+        {{format_date created_at}}
+      </div>
+    </section>
+  {{/each}}
+</div>
 
 {{#if loggedIn}}
   <form class="comment-form">
