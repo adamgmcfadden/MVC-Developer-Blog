@@ -24,19 +24,23 @@
   </form>
 </section>
 
+{{! if post exists }}
 {{#if posts.length}}
   <section>
     <ul>
+      {{! for each post }}
       {{#each posts as |post|}}
         <li class="edit-post">
           <div class="edit-btn-styling">
             <a
               type="submit"
+              {{! change href based on post id }}
               href="/dashboard/edit/{{post.id}}"
               class="edit-btn-text"
+              {{! show post title }}
             >{{post.title}}
-
             </a>
+            {{! post created when }}
             <div class="date-text">{{format_date post.created_at}}</div>
           </div>
         </li>
@@ -44,4 +48,5 @@
     </ul>
   </section>
 {{/if}}
+{{! link to add-post.js }}
 <script src="/javascript/add-post.js"></script>

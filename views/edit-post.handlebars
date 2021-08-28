@@ -15,12 +15,14 @@
           <input
             name="post-title"
             type="text"
+            {{! show post title in input field }}
             value="{{post.title}}"
             id="post-title"
           />
         </div>
         <div>
           <label for="post-text">Content</label>
+          {{! show post text in textarea field }}
           <textarea name="post-text">{{post.post_text}}</textarea>
         </div>
         <button type="submit" id="styling-edit-post-btn">Update Post</button>
@@ -29,11 +31,13 @@
           class="delete-post-btn"
           id="styling-edit-post-btn"
         >Delete</button>
+        {{! &larr  = <--  + Return to dashboard link}}
         <a href="/dashboard" id="return-link"> &larr; Return to dashboard</a>
       </div>
     </div>
   </form>
 </article>
 
+{{! link to edit-post.js and delete-post.js }}
 <script src="/javascript/edit-post.js"></script>
 <script src="/javascript/delete-post.js"></script>

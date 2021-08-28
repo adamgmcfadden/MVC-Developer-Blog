@@ -200,6 +200,12 @@ a:hover {
   padding: 1%;
 }
 
+/*--- styling for username and date on homepage ---*/
+.meta {
+  margin: auto 10px auto 0;
+  color: #cadac8;
+}
+
 /*----------------------------------------------
 ----------  Dashboard Styling Starts  -----------
 -----------------------------------------------*/

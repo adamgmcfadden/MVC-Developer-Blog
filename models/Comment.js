@@ -1,8 +1,11 @@
+//-----Import Dependencies
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
+// Initializw Comment model by extending off Sequelizes Model Class
 class Comment extends Model {}
 
+// set up fields and rules for Comment model
 Comment.init(
   {
     id: {
@@ -41,4 +44,5 @@ Comment.init(
   }
 );
 
+//export model
 module.exports = Comment;

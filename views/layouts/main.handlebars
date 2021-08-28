@@ -3,14 +3,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> Blog-This-Tech</title>
+    {{! link to stylesheet }}
     <link rel="stylesheet" href="/stylesheet/style.css" />
   </head>
   <body>
-    <div class="container">
+    <div>
       <header>
         <nav>
           <a href="/">Home</a>
           <a href="/dashboard">Dashboard</a>
+          {{! if logged in, logout button, if logged out, show login button }}
           {{#if loggedIn}}
             <a id="logout" class="btn-nav">Logout</a>
           {{else}}
@@ -18,10 +20,12 @@
           {{/if}}
         </nav>
       </header>
+      {{! other views here }}
       <main>
         {{{body}}}
       </main>
     </div>
+    {{! if logged in, logout functionality for button needed }}
     {{#if loggedIn}}
       <script src="/javascript/logout.js"></script>
     {{/if}}
