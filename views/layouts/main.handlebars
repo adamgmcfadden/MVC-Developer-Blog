@@ -3,31 +3,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> Blog-This-Tech</title>
+    {{! link to stylesheet }}
     <link rel="stylesheet" href="/stylesheet/style.css" />
   </head>
   <body>
-    <div class="container">
+    <div>
       <header>
-
         <nav>
           <a href="/">Home</a>
           <a href="/dashboard">Dashboard</a>
+          {{! if logged in, logout button, if logged out, show login button }}
           {{#if loggedIn}}
-            <button id="logout" class="btn-nav">logout</button>
+            <a id="logout" class="btn-nav">Logout</a>
           {{else}}
-            <a href="/login">login</a>
+            <a href="/login">Login</a>
           {{/if}}
         </nav>
-        <h1>
-          Blog-This-Tech
-        </h1>
       </header>
+      {{! other views here }}
       <main>
         {{{body}}}
       </main>
     </div>
-    {{!-- {{#if loggedIn}}
+    {{! if logged in, logout functionality for button needed }}
+    {{#if loggedIn}}
       <script src="/javascript/logout.js"></script>
-    {{/if}} --}}
+    {{/if}}
   </body>
 </html>

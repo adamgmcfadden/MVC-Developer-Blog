@@ -1,0 +1,21 @@
+<div class="comments">
+  {{! for each posted comment }}
+  {{#each this}}
+    <section class="comment">
+      <div class="title-strip" id="empty-strip">
+      </div>
+      <div class="multi-form" id="comment-form-container">
+        <div class="form-style" id="comment-text-style">
+          {{! show previous comment }}
+          <div class="comment-text">
+            {{comment_text}}
+          </div>
+          {{! show who commented and when }}
+          <div id="user-name">-{{user.username}}
+            ,{{format_date created_at}}
+          </div>
+        </div>
+      </div>
+    </section>
+  {{/each}}
+</div>

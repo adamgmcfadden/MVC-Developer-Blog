@@ -1,3 +1,4 @@
+//Import dependencies
 const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
@@ -40,13 +41,14 @@ User.init(
     },
   },
   {
+    //hooks before create user, hash password with bcrypt
     hooks: {
       // set up beforeCreate lifecycle "hook" functionality
       async beforeCreate(newUserData) {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-
+      //hooks before create user, hash password with bcrypt
       async beforeUpdate(updatedUserData) {
         updatedUserData.password = await bcrypt.hash(
           updatedUserData.password,
@@ -63,4 +65,5 @@ User.init(
   }
 );
 
+//export user model
 module.exports = User;

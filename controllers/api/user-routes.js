@@ -1,3 +1,4 @@
+//---Import dependencies
 const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 
@@ -6,13 +7,16 @@ router.get("/", (req, res) => {
   User.findAll({
     attributes: { exclude: ["password"] },
   })
+    //return all user information (exclude password)
     .then((dbUserData) => res.json(dbUserData))
+    //if error, return error
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
+//return single user by id
 router.get("/:id", (req, res) => {
   User.findOne({
     attributes: { exclude: ["password"] },
@@ -35,57 +39,69 @@ router.get("/:id", (req, res) => {
     ],
   })
     .then((dbUserData) => {
+      //if no user exists with id, return error 404
       if (!dbUserData) {
         res.status(404).json({ message: "No user with this id" });
         return;
       }
+      //return user by id
       res.json(dbUserData);
     })
+    //if error return error
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
+//create new user
 router.post("/", (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
   })
+    //create new user with username, email and password
     .then((dbUserData) => {
+      //save session when logged in
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
 
+        //create new user
         res.json(dbUserData);
       });
     })
+    //if error, return error
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
+//login with username
 router.post("/login", (req, res) => {
   User.findOne({
     where: {
-      email: req.body.email,
+      username: req.body.username,
     },
   }).then((dbUserData) => {
+    //username does not exist error
     if (!dbUserData) {
-      res.status(400).json({ message: "No user with that email address!" });
+      res.status(400).json({ message: "No user with that username!" });
       return;
     }
-
+    //save valid passowrd as variable
     const validPassword = dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
+      //return incorrect password if the case
       res.status(400).json({ message: "Incorrect password!" });
       return;
     }
 
+    //if password okay, save session and log user in
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
@@ -96,6 +112,7 @@ router.post("/login", (req, res) => {
   });
 });
 
+//end session to log out
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -106,6 +123,7 @@ router.post("/logout", (req, res) => {
   }
 });
 
+//update user info (not used anywhere in app)
 router.put("/:id", (req, res) => {
   User.update(req.body, {
     individualHooks: true,
@@ -126,6 +144,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
+//delete user info (not used anywhere in app)
 router.delete("/:id", (req, res) => {
   User.destroy({
     where: {
@@ -145,4 +164,5 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+//export user apis
 module.exports = router;

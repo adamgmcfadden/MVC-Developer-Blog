@@ -1,8 +1,11 @@
+//-----Import dependencies
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
+// Initializw Post model by extending off Sequelizes Model Class
 class Post extends Model {}
-// create fields/columns for Post model
+
+// set up fields and rules for Post model
 Post.init(
   {
     id: {
@@ -38,4 +41,5 @@ Post.init(
   }
 );
 
+//export model
 module.exports = Post;

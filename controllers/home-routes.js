@@ -32,6 +32,8 @@ router.get("/", (req, res) => {
       res.status(500).json(err);
     });
 });
+
+//get single post on homepage
 router.get("/post/:id", (req, res) => {
   Post.findOne({
     where: {
@@ -40,6 +42,7 @@ router.get("/post/:id", (req, res) => {
     attributes: ["id", "post_text", "title", "created_at"],
     include: [
       {
+        //include comments
         model: Comment,
         attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
         include: {
@@ -61,7 +64,6 @@ router.get("/post/:id", (req, res) => {
 
       // serialize the data
       const post = dbPostData.get({ plain: true });
-
       // pass data to template
       res.render("single-post", { post, loggedIn: req.session.loggedIn });
     })
@@ -71,17 +73,20 @@ router.get("/post/:id", (req, res) => {
     });
 });
 
+//after login, redirect user to dashboard
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/dashboard");
     return;
   }
-
+  //render login page
   res.render("login");
 });
 
+//render signup page
 router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
+//export rendering
 module.exports = router;

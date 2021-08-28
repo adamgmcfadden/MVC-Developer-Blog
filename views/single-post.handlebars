@@ -1,0 +1,47 @@
+<header>
+  <h1>
+    Blog-This-Tech
+  </h1>
+</header>
+<article class="post" id="single-post">
+  <div class="title-strip">
+    <div class="title" id="blog-title">
+      {{!-- link to post by post id --- post title displayed to screen --}}
+      <a href="/post/{{post.id}}">{{post.title}}</a>
+    </div>
+    <div class="meta">
+      by
+      {{!-- uses your username when commenting on post --}}
+      {{post.user.username}}
+      on
+      {{!-- automatic post date created and formatted --}}
+      {{format_date post.created_at}}
+    </div>
+  </div>
+  <div class="text">{{post.post_text}}</div>
+</article>
+
+{{!-- can only comment if logged in --}}
+{{#if loggedIn}}
+  <div class="title-strip" id="empty-strip">
+  </div>
+  <form class="comment-form">
+
+    <div>
+      <label for="comment-body">Comment</label>
+      <textarea name="comment-body" id="comment-area"></textarea>
+    </div>
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+{{/if}}
+
+{{!-- links to comments in partials --- shows existing comments for post --}}
+{{> comments post.comments}}
+
+{{!-- only need comment button functionality if logged in --}}
+{{#if loggedIn}}
+{{!-- link to comment.js --}}
+  <script src="/javascript/comment.js"></script>
+{{/if}}
