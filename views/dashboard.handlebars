@@ -3,27 +3,10 @@
     Your Dashboard
   </h1>
 </header>
-<section>
-  <form class="new-post-form">
-    <div class="multi-form" id="new-post-strip">
-      <div class="subtitle" id="new-post">
-        <h2>Create New Post</h2>
-      </div>
-      <div class="form-style">
-        <div>
-          <label for="post-title">Title</label>
-          <input type="text" id="post-title" name="post-title" />
-        </div>
-        <div>
-          <label for="post-text"> Content</label>
-          <textarea id="post-text" name="post-text"></textarea>
-        </div>
-        <button type="submit" class="btn">Create</button>
-      </div>
-    </div>
-  </form>
-</section>
 
+<div class="new-post-btn">
+  <button id="new-post">+ New Post</button>
+</div>
 {{! if post exists }}
 {{#if posts.length}}
   <section>
@@ -48,5 +31,5 @@
     </ul>
   </section>
 {{/if}}
-{{! link to add-post.js }}
-<script src="/javascript/add-post.js"></script>
+{{! link to new-post.js }}
+<script src="/javascript/new-post.js"></script>

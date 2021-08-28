@@ -39,6 +39,11 @@ router.get("/", withAuth, (req, res) => {
     });
 });
 
+//get new post route
+router.get("/new-post", withAuth, (req, res) => {
+  res.render("new-post", { loggedIn: true });
+});
+
 //edit by post id
 router.get("/edit/:id", withAuth, (req, res) => {
   Post.findByPk(req.params.id, {

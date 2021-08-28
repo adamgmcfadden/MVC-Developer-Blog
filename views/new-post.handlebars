@@ -1,0 +1,31 @@
+<header>
+  <h1 id="dash-title">
+    Your Dashboard
+  </h1>
+</header>
+<section>
+  <form class="new-post-form">
+    <div class="multi-form" id="new-post-strip">
+      <div class="subtitle" id="new-post-form">
+        <h2>Create New Post</h2>
+      </div>
+      <div class="form-style">
+        <div>
+          <label for="post-title">Title</label>
+          <input type="text" id="post-title" name="post-title" />
+        </div>
+        <div>
+          <label for="post-text"> Content</label>
+          <textarea id="post-text" name="post-text"></textarea>
+        </div>
+        <button type="submit" class="btn">Create</button>
+      </div>
+      {{! &larr  = <--  + Return to dashboard link}}
+      <a href="/dashboard" id="return-link"> &larr; Return to dashboard</a>
+    </div>
+
+  </form>
+</section>
+
+{{! link to add-post.js }}
+<script src="/javascript/add-post.js"></script>
